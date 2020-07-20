@@ -68,14 +68,10 @@ export class BookSearchComponent implements OnInit {
 
     if ( this.searchForm.dirty ) {
       if ( this.time === 0 ) {
-        console.log(timeDifference);
-
         this.time = date.getTime();
         this.dispatch();
       } else {
-        if ( date.getTime() - this.time >= this.timeThreshold ) {
-          console.log(timeDifference);
-
+        if ( timeDifference >= this.timeThreshold ) {
           this.time = date.getTime();
           this.dispatch();
         }

@@ -28,7 +28,7 @@ describe('When: Use the search feature', () => {
     const form = await $('form');
     const input = await $('input[type="search"]');
     let items = [];
-    
+
     await input.sendKeys('j');
     items = await $$('[data-testing="book-item"]');
     expect(items.length).to.be.greaterThan(1, 'At least one book');
