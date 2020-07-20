@@ -68,5 +68,19 @@ form {
   justify-content: center;
   min-height: 50vh;
   font-size: 1.5rem;
-  color: $gray40;
+  color: $gray60;
+}
+
+.book-grid {
+  button.mat-focus-indicator:focus {
+    color: $yellow !important;
+  }
+}
+
+.reading-list-container {
+  h2 {
+    button.mat-focus-indicator.focused {
+      background: $gray60 !important;
+    }
+  }
 }
