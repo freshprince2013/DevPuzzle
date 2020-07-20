@@ -18,7 +18,8 @@ import { Book } from '@tmo/shared/models';
 
 export class BookSearchComponent implements OnInit {
   books: ReadingListBook[];
-
+  time:number = 0;
+  timeThreshold:number = 500; // only one request can be sent every 500 ms
   searchForm = this.fb.group({
     term: ''
   });
@@ -53,11 +54,32 @@ export class BookSearchComponent implements OnInit {
     this.searchBooks();
   }
 
-  searchBooks() {
+  dispatch() {
     if (this.searchForm.value.term) {
-      this.store.dispatch(searchBooks({ term: this.searchTerm }));
+      this.store.dispatch(searchBooks({term: this.searchTerm}));
     } else {
       this.store.dispatch(clearSearch());
+    }
+  }
+
+  searchBooks() {
+    let date:Date = new Date();
+    let timeDifference:number = date.getTime() - this.time;
+
+    if ( this.searchForm.dirty ) {
+      if ( this.time === 0 ) {
+        console.log(timeDifference);
+
+        this.time = date.getTime();
+        this.dispatch();
+      } else {
+        if ( date.getTime() - this.time >= this.timeThreshold ) {
+          console.log(timeDifference);
+
+          this.time = date.getTime();
+          this.dispatch();
+        }
+      }
     }
   }
 }
