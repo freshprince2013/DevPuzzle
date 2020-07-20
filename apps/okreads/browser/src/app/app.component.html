@@ -2,11 +2,17 @@
   <mat-drawer-content>
     <header class="header">
       <div class="header--content">
-        <h1>okreads</h1>
+        <h1>
+          <a href="\" title="okreads" aria-label="okreads" tabindex="0">okreads</a>
+        </h1>
         <div>
           <button
             data-testing="toggle-reading-list"
             mat-button
+            aria-label="Click here to display reading list"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
             (click)="drawer.toggle()"
           >
             Reading List
@@ -23,7 +29,7 @@
     <div class="reading-list-container" data-testing="reading-list-container">
       <h2>
         My Reading List
-        <button mat-icon-button (click)="drawer.close()">
+        <button mat-icon-button (click)="drawer.close()" aria-label="Close reading list" tabindex="0" role="button" aria-pressed="false">
           <mat-icon>close</mat-icon>
         </button>
       </h2>
