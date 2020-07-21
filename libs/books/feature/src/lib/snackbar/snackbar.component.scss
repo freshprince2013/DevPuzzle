@@ -1,0 +1,15 @@
+@import 'variables.scss';
+
+div#snackbar {
+  .content {
+    display: inline-block;
+    &:nth-child(1) {
+      width: 80% !important;
+    }
+    &:nth-child(2) {
+      position: relative;
+      bottom: 5px;
+      left: 9px;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<div id="snackbar" *ngIf="snackbar">
+  <div class="content">
+    <ng-container *ngIf="snackbar.event == 'add' || snackbar.event == 'remove'">
+      <div *ngIf="snackbar.event == 'add'">
+        {{snackbar.bookTitle}} has been <span *ngIf="snackbar.event == 'add'">added</span> to the reading list.
+      </div>
+
+      <div *ngIf="snackbar.event == 'remove'">
+        {{snackbar.bookTitle}} has been <span *ngIf="snackbar.event == 'remove'">removed</span> from the reading list.
+      </div>
+    </ng-container>
+    <ng-container *ngIf="snackbar.event == 'undone'">
+      <div>
+        Action undone.
+      </div>
+    </ng-container>
+    <ng-container *ngIf="snackbar.event != 'add' && snackbar.event != 'remove' && snackbar.event != 'undone'">
+      <div>
+        Invalid event entry.
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="content">
+    <ng-container *ngIf="snackbar.event == 'add' || snackbar.event == 'remove'">
+      <button
+        mat-flat-button
+        color="secondary"
+        [disabled]="( snackbar ) ? ( snackbar.event.toLowerCase() !== 'add' && snackbar.event.toLowerCase() !== 'remove' ) : true"
+        (click)="undo()"
+        [attr.aria-label]="'Undo ' + snackbar.bookTitle + ' from reading list'"
+      >
+        Undo
+      </button>
+    </ng-container>
+  </div>
+</div>

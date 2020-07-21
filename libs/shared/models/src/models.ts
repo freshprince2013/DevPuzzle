@@ -8,6 +8,13 @@ export interface Book {
   coverUrl?: string;
 }
 
+export interface Snackbar {
+  id: string;
+  bookId: string;
+  bookTitle?: string;
+  event: string;
+}
+
 export interface ReadingListItem extends Omit<Book, 'id'> {
   bookId: string;
   finished?: boolean;
