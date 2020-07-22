@@ -9,7 +9,7 @@
         {{ b.authors.join(',') }}
       </div>
       <div class="status" *ngIf="b.finished">
-        <span>Finished on: </span> <span><input #finishedDate matInput [matDatepicker]="picker" (dateInput)="status(b)" [(ngModel)]="b.finishedDate" readonly></span>
+        <span>Finished on: </span> <span><input class="finishedDate" #finishedDate matInput [matDatepicker]="picker" (dateChange)="status(b)" [(ngModel)]="b.finishedDate" readonly></span>
       </div>
       <div class="status" *ngIf="!b.finished">
         Not finished
@@ -30,6 +30,7 @@
 
       <mat-slide-toggle
         color="primary"
+        class="slider"
         [attr.aria-label]="'Mark [' + b.title + '] as finished'"
         tabindex="0"
         aria-pressed="false"
@@ -39,6 +40,7 @@
 
       <mat-datepicker-toggle
         *ngIf="b.finished"
+        class="datepicker"
         matSuffix
         [for]="picker"
         [attr.aria-label]="'Choose finished date for book [' + b.title + ']'"
