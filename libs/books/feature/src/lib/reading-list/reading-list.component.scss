@@ -16,7 +16,7 @@
 
   > * {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
   }
 }
@@ -29,19 +29,49 @@
 
 .reading-list-item--details {
   flex: 1;
+  flex-direction: column;
   min-width: 0;
   margin-right: $spacing-xxs;
+
+  .status {
+    span {
+      display: inline-block !important;
+      &:first-child {
+        padding-right: 3px;
+      }
+    }
+  }
 }
 
 .reading-list-item--details--title,
-.reading-list-item--details--author {
+.reading-list-item--details--author,
+.reading-list-item--details--status {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.reading-list-item--details--title {
+  white-space: normal !important;
+}
+
+.reading-list-item--actions {
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }
 
 .empty {
   font-weight: 100;
   font-size: 1rem;
   color: $gray60;
+}
+
+.mat-slide-toggle {
+  position: relative;
+  top: 7px;
+  left: 8px;
 }

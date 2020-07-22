@@ -11,6 +11,7 @@ import { BooksFeatureModule } from '@tmo/books/feature';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,13 +28,14 @@ import { MatIconModule } from '@angular/material/icon';
       {},
       {
         runtimeChecks: {
-          strictStateImmutability: true,
-          strictActionImmutability: true
+          strictStateImmutability: false,
+          strictActionImmutability: false
         }
       }
     ),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ name: 'tmo' })
+    StoreDevtoolsModule.instrument({ name: 'tmo' }),
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -36,12 +36,13 @@
               color="primary"
               (click)="addBookToReadingList(b)"
               [disabled]="b.isAdded"
-              [attr.aria-label]="'Add ' + b.title + ' to reading list'"
+              [attr.aria-label]="'Add [' + b.title + '] to reading list'"
               tabindex="0"
               role="button"
               aria-pressed="false"
             >
-              Want to Read
+              <ng-container *ngIf="!isFinished(b)">Want to Read</ng-container>
+              <ng-container *ngIf="isFinished(b)">Finished</ng-container>
             </button>
           </div>
         </div>
@@ -49,12 +50,12 @@
     </div>
   </div>
 </ng-container>
+
 <ng-template #empty>
   <div class="empty">
     <p>
       Try searching for a topic, for example "<a href="#" (click)="searchExample()" title="You may alternatively search for book topics right here" aria-label="Search for book topics right here" tabindex="0"
-        >JavaScript</a
-      >".
+        >JavaScript</a>".
     </p>
   </div>
 </ng-template>

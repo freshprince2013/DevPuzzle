@@ -11,6 +11,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TotalCountComponent } from './total-count/total-count.component';
 import { ReadingListComponent } from './reading-list/reading-list.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 const EXPORTS = [
   BookSearchComponent,
@@ -29,9 +31,11 @@ const EXPORTS = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-      { path: '', pathMatch: 'full', component: BookSearchComponent }
+      {path: '', pathMatch: 'full', component: BookSearchComponent}
     ]),
-    BooksDataAccessModule
+    BooksDataAccessModule,
+    MatSlideToggleModule,
+    MatDatepickerModule
   ],
   exports: [...EXPORTS],
   declarations: [...EXPORTS]

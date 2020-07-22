@@ -12,6 +12,11 @@ export const loadReadingListError = createAction(
   props<{ error: string }>()
 );
 
+export const updateReadingListItem = createAction(
+  '[Reading List] Update list item',
+  props<{ item: ReadingListItem }>()
+);
+
 export const addToReadingList = createAction(
   '[Reading List] Add to list',
   props<{ book: Book }>()
@@ -22,6 +27,11 @@ export const failedAddToReadingList = createAction(
   props<{ book: Book }>()
 );
 
+export const confirmedUpdateReadingList = createAction(
+  '[Reading List] Confirmed update list',
+  props<{ item: ReadingListItem }>()
+);
+
 export const confirmedAddToReadingList = createAction(
   '[Reading List] Confirmed add to list',
   props<{ book: Book }>()
@@ -29,6 +39,11 @@ export const confirmedAddToReadingList = createAction(
 
 export const removeFromReadingList = createAction(
   '[Reading List] Remove from list',
+  props<{ item: ReadingListItem }>()
+);
+
+export const failedUpdateReadingList = createAction(
+  '[Reading List] Failed update list',
   props<{ item: ReadingListItem }>()
 );
 
