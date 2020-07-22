@@ -3,12 +3,12 @@ import { Store } from '@ngrx/store';
 import {
   addToReadingList,
   clearSearch,
-  getAllBooks,
+  getAllBooks, getReadingList,
   ReadingListBook,
   searchBooks
 } from '@tmo/books/data-access';
 import { FormBuilder } from '@angular/forms';
-import { Book } from '@tmo/shared/models';
+import {Book, ReadingListItem} from '@tmo/shared/models';
 
 @Component({
   selector: 'tmo-book-search',
@@ -18,6 +18,7 @@ import { Book } from '@tmo/shared/models';
 
 export class BookSearchComponent implements OnInit {
   books: ReadingListBook[];
+  readingList: ReadingListItem[];
 
   searchForm = this.fb.group({
     term: ''
@@ -36,6 +37,9 @@ export class BookSearchComponent implements OnInit {
     this.store.select(getAllBooks).subscribe(books => {
       this.books = books;
     });
+    this.store.select(getReadingList).subscribe((items) => {
+      this.readingList = items;
+    });
   }
 
   formatDate(date: void | string) {
@@ -44,7 +48,10 @@ export class BookSearchComponent implements OnInit {
       : undefined;
   }
 
-  addBookToReadingList(book: Book) {
+  addBookToReadingList(book: ReadingListBook) {
+    book.isAdded = true;
+    book.finished = false;
+    book.finishedDate = null;
     this.store.dispatch(addToReadingList({ book }));
   }
 
@@ -59,5 +66,16 @@ export class BookSearchComponent implements OnInit {
     } else {
       this.store.dispatch(clearSearch());
     }
+  }
+
+  isFinished(book: ReadingListBook): boolean {
+    let flag = false;
+    this.readingList.forEach((item) => {
+      if (item.bookId === book.id) {
+        flag = item.finished;
+      }
+    });
+
+    return flag;
   }
 }
